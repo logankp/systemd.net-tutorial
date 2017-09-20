@@ -1,0 +1,7 @@
+[Unit]
+Description=Test .Net service
+
+[Service]
+ExecStart=/usr/local/bin/dotnet /opt/Project1/service.dll
+
+
