@@ -10,15 +10,20 @@ namespace service
         protected override void Append(StringBuilder builder, LogEventInfo logEvent)
         {
             if (logEvent.Level == NLog.LogLevel.Fatal)
-                builder.Append($"<{(int)LogLevel.Critical}>");
+                builder.Append(GetLevelString(LogLevel.Critical));
             else if (logEvent.Level == NLog.LogLevel.Error)
-                builder.Append($"<{(int)LogLevel.Error}>");
+                builder.Append(GetLevelString(LogLevel.Error));
             else if (logEvent.Level == NLog.LogLevel.Warn)
-                builder.Append($"<{(int)LogLevel.Warning}>");
+                builder.Append(GetLevelString(LogLevel.Warning));
             else if (logEvent.Level == NLog.LogLevel.Info)
-                builder.Append($"<{(int)LogLevel.Info}>");
+                builder.Append(GetLevelString(LogLevel.Info));
             else if (logEvent.Level == NLog.LogLevel.Debug || logEvent.Level == NLog.LogLevel.Trace)
-                builder.Append($"<{(int)LogLevel.Debug}>");
+                builder.Append(GetLevelString(LogLevel.Debug));
+        }
+
+        private string GetLevelString(LogLevel level)
+        {
+            return $"<{(int)level}>";
         }
     }
 }

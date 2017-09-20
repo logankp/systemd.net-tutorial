@@ -18,15 +18,19 @@ namespace service
         //Writes to Standard Output
         public static void Log(string message, LogLevel level)
         {
-            string strLevel = $"<{(int)level}>";
-            Console.WriteLine($"{strLevel}{message}");
+            Console.WriteLine(GetLogMessage(message, level));
         }
 
         //Writes to Standard Error
         public static void LogError(string message, LogLevel level)
         {
+            Console.Error.WriteLine(GetLogMessage(message, level));
+        }
+
+        private static string GetLogMessage(string message, LogLevel level)
+        {
             string strLevel = $"<{(int)level}>";
-            Console.Error.WriteLine($"{strLevel}{message}");
+            return $"{strLevel}{message}";
         }
     }
 }

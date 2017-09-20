@@ -3,19 +3,24 @@ using System.Threading;
 using System.Runtime.Loader;
 using System.Linq;
 using System.Collections.Generic;
+using NLog.LayoutRenderers;
+using NLog;
 
 namespace service
 {
     class Program
     {
+        private static readonly NLog.Logger _logger = LogManager.GetCurrentClassLogger();
         static void Main(string[] args)
         {
+            NLogConfig.Configure();
+            _logger.Info("Service starting");
             AssemblyLoadContext.Default.Unloading += SigTermEventHandler;
-            Console.CancelKeyPress += new ConsoleCancelEventHandler(CancelHandler);
-            Logger.Log("This is an emergency!", LogLevel.Emergency);
+            Console.CancelKeyPress += CancelHandler;
+            Logger.Log("This is an emergency!", LogLevel.Emergency); //only do this once
+
             while (true)
             {
-                Console.WriteLine("This is a normal message");
                 foreach(LogLevel level in Enum.GetValues(typeof(LogLevel)).Cast<LogLevel>()
                 .Where(i => i != LogLevel.Emergency)) //skip emergency so we don't get spammed by console notifications
                 {
@@ -29,12 +34,12 @@ namespace service
 
         private static void SigTermEventHandler(AssemblyLoadContext obj)
         {
-            System.Console.WriteLine("Unloading...");
+            _logger.Warn("Unloading");
         }
 
         private static void CancelHandler(object sender, ConsoleCancelEventArgs e)
         {
-            System.Console.WriteLine("Exiting...");
+            _logger.Info("Exiting");
         }
     }
 }
