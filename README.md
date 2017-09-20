@@ -8,3 +8,7 @@ Must have .Net Core installed. See [here](https://www.microsoft.com/net/core) fo
 ## [Project 1](Project1)
 
 Getting started writing a basic systemd service in C#.
+
+## [Project 2](Project2)
+
+Adding logging to the systemd journal
