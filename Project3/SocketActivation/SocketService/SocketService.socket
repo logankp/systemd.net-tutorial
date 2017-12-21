@@ -1,0 +1,5 @@
+[Unit]
+Description=Socket unit for ScoketService
+
+[Socket]
+ListenStream=127.0.0.1:4000
