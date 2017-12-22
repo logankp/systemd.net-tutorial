@@ -13,6 +13,6 @@ Getting started writing a basic systemd service in C#.
 
 Adding logging to the systemd journal
 
-## [Project 3](Project3)
+## [Project 3](Project3/SocketActivation)
 
 Adding socket activation and notification support
