@@ -12,3 +12,7 @@ Getting started writing a basic systemd service in C#.
 ## [Project 2](Project2)
 
 Adding logging to the systemd journal
+
+## [Project 3](Project3/SocketActivation)
+
+Adding socket activation and notification support
